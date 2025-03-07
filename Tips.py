@@ -21,7 +21,7 @@ TIP_ADDRESS = "0xd3E51bfEE95E31760B671AfEF9763fB2CF4A375a"
 
 # Параметры транзакции
 GAS_LIMIT = 48294  # Базовый лимит газа из транзакции
-TIP_AMOUNT = w3.to_wei(1.0001, 'ether')  # Сумма Tips из примера
+TIP_AMOUNT = w3.to_wei(1.0001, 'ether')  
 
 # Чтение ABI из файла
 try:
@@ -64,10 +64,10 @@ if not recipients:
 
 # Получение текущей цены газа с добавлением 10%
 def get_current_gas_price():
-    base_gas_price = w3.eth.gas_price  # В wei, типа decimal.Decimal
-    base_gwei = w3.from_wei(base_gas_price, 'gwei')  # Преобразуем в gwei, тоже decimal.Decimal
-    increase_percent = Decimal('0.10')  # Преобразуем 0.10 в Decimal, чтобы избежать ошибки
-    increase_gwei = int(base_gwei * increase_percent)  # Умножаем с правильным типом
+    base_gas_price = w3.eth.gas_price 
+    base_gwei = w3.from_wei(base_gas_price, 'gwei')  
+    increase_percent = Decimal('0.10')  
+    increase_gwei = int(base_gwei * increase_percent)  
     adjusted_gas_price = int(base_gas_price) + w3.to_wei(increase_gwei, 'gwei')  # Преобразуем в wei
     print(
         f"{Fore.YELLOW}Debug: base_gwei={base_gwei}, increase_gwei={increase_gwei}, adjusted_gas_price={adjusted_gas_price}{Style.RESET_ALL}")
@@ -90,7 +90,7 @@ def send_tip(account_private_key, recipient_address):
 
         # Получение текущей цены газа
         gas_price = get_current_gas_price()
-        gas_cost = int(gas_price) * GAS_LIMIT  # Преобразуем gas_price в int перед умножением
+        gas_cost = int(gas_price) * GAS_LIMIT  
         gas_cost_mon = w3.from_wei(gas_cost, 'ether')
         print(
             f"{Fore.YELLOW}Стоимость газа: {gas_cost_mon} MON (Gas Price: {w3.from_wei(gas_price, 'gwei')} Gwei){Style.RESET_ALL}")
